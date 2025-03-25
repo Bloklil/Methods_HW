@@ -3,16 +3,16 @@ import java.time.LocalDate;
 public class Main {
     public static void main(String[] args) {
         System.out.println("Задание 1");
-        int year = 2015;
+        int year = 2017;
         System.out.println(checkYears(year));
 
         System.out.println("Задание 2");
         int osType = 0; // 0-IOS, 1-android
-        int clientDeviceYear = 2014;
+        int clientDeviceYear = 2025;
         suggestAppVersion(osType, clientDeviceYear);
 
         System.out.println("Задание 3");
-        int deliveryDistance = 95;
+        int deliveryDistance = 222;
         int deliveryDays = calculateDeliveryDays(deliveryDistance);
         if (deliveryDays == -1) {
             System.out.println("Доставка свыше 100 км невозможна.");
@@ -42,23 +42,23 @@ public class Main {
     }
 
     public static String checkYears(int year) {
-        if (year > 1584 && ((year % 400 == 0) || (year % 4 == 0 && year % 100 != 0))) {
+        if (year > 1584 && (year % 400 == 0) || (year % 4 == 0 && year % 100 != 0)) {
             return year + " год является високосным";
-        } else if (year > 1584) {
-            return year + " год не является високосным";
         } else {
-            return "В это время ещё не задумывались о високосных годах";
+            return year + " год не является високосным";
         }
     }
 
     public static void suggestAppVersion(int osType, int clientDeviceYear) {
-        int currentYear = 2015; // Текущий год
+        int currentYear = LocalDate.now().getYear();  // Текущий год
         if (osType == 0 && clientDeviceYear < currentYear) {
             System.out.println("Установите облегченную версию приложения для iOS по ссылке");
         } else if (osType == 1 && clientDeviceYear < currentYear) {
             System.out.println("Установите облегченную версию приложения для Android по ссылке");
+        } else if (osType == 1 && clientDeviceYear > currentYear) {
+            System.out.println("Вы можете установить обычное приложение для Anfroid");
         } else {
-            System.out.println("Вы можете установить обычное приложение");
+            System.out.println("Вы можете установить обычное приложение для iOS");
         }
     }
 
